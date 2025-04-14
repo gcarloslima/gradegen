@@ -36,6 +36,6 @@ Recomendado: use um ambiente virtual.
 ### 3. Inicie a aplicação com o Streamlit
 
 ```bash
-streamlit run app.py
+streamlit run script.py
 ```
 O navegador será aberto automaticamente com a interface, geralmente em http://localhost:8501.
