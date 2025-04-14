@@ -22,8 +22,8 @@ Este projeto gera uma população inicial de horários acadêmicos distribuídos
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
+git clone https://github.com/gcarloslima/gradegen.git
+cd gradegen
 ```
 
 ### 2. Instale as dependências
