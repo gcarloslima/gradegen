@@ -29,7 +29,7 @@ cd gradegen
 ### 2. Crie o ambiente virtual e instale as dependências
 
 ```bash
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate  # or .venv\Scripts\activate no Windows
 pip install -r requirements.txt
 ```
