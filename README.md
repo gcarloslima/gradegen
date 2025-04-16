@@ -26,9 +26,11 @@ git clone https://github.com/gcarloslima/gradegen.git
 cd gradegen
 ```
 
-### 2. Instale as dependências
+### 2. Crie o ambiente virtual e instale as dependências
 
 ```bash
+python -m venv .venv
+source .venv/bin/activate  # or .venv\Scripts\activate no Windows
 pip install -r requirements.txt
 ```
 Recomendado: use um ambiente virtual.
