@@ -1,9 +1,24 @@
 import streamlit as st
 import random
 import pandas as pd
+from pprint import pprint
+
+def avaliacao(individuo):
+    choque = 0
+    print(individuo[1]["professor"])
+    for h in range(0, 20):
+        for i in range(0, 5):
+            for j in range(0, 4 - i):
+                x = i * 20 + (j * 20) + h
+                y = i * 20 + ((j + 1) * 20) + h
+
+                if individuo[x]["professor"] == individuo[y]["professor"]:
+                    choque += 1
+    print(choque)
+
 
 def pop_inicial(periodos, tam_pop):
-    pop = [["" for _ in range(100)] for _ in range(tam_pop)]
+    pop = [[{} for _ in range(100)] for _ in range(tam_pop)]
     for k in range(tam_pop):
         j = 0
         for periodo in periodos:
@@ -16,15 +31,19 @@ def pop_inicial(periodos, tam_pop):
                 j += 1
     return pop
 
+
 def formatar_em_grade(lista_20_disciplinas):
     dias = ['SEG', 'TER', 'QUA', 'QUI', 'SEX']
     grade = {dia: [] for dia in dias}
 
     for i, dia in enumerate(dias):
-        for j in range(4):  # 4 aulas por dia
-            grade[dia].append(lista_20_disciplinas[i * 4 + j])
+        for j in range(4):
+            d = lista_20_disciplinas[i * 4 + j]
+            texto = f"{d['nome']}\n({d['professor']})"
+            grade[dia].append(texto)
 
     return pd.DataFrame(grade)
+
 
 # Dados
 disciplinas = [
@@ -41,9 +60,10 @@ professores = [
 ]
 
 todas_disciplinas = [
-    f"{disciplina} / {professores[i % len(professores)]}"
+    {"nome": disciplina, "professor": professores[i % len(professores)]}
     for i, disciplina in enumerate(disciplinas)
 ]
+
 
 
 periodos_determinados = [
@@ -62,6 +82,8 @@ tam_pop_determinada = st.slider("Tamanho da população", 1, 100, 5)
 
 if st.button("Gerar população"):
     populacao = pop_inicial(periodos_determinados, tam_pop_determinada)
+    for individuo in populacao:
+        avaliacao(individuo)
 
     for idx, individuo in enumerate(populacao):
         st.markdown(f"## 👤 Indivíduo {idx+1}")
