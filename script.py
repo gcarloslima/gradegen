@@ -5,16 +5,13 @@ from pprint import pprint
 
 def avaliacao(individuo):
     choque = 0
-    print(individuo[1]["professor"])
     for h in range(0, 20):
         for i in range(0, 5):
             for j in range(0, 4 - i):
-                x = i * 20 + (j * 20) + h
-                y = i * 20 + ((j + 1) * 20) + h
-
-                if individuo[x]["professor"] == individuo[y]["professor"]:
+                if individuo[i * 20 + h]["professor"] == individuo[i * 20 + ((j + 1) * 20) + h]["professor"]:
                     choque += 1
-    print(choque)
+
+    return choque
 
 
 def pop_inicial(periodos, tam_pop):
