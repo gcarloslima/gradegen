@@ -79,16 +79,16 @@ tam_pop_determinada = st.slider("Tamanho da população", 1, 100, 5)
 
 if st.button("Gerar população"):
     populacao = pop_inicial(periodos_determinados, tam_pop_determinada)
-    for individuo in populacao:
-        avaliacao(individuo)
 
-    for idx, individuo in enumerate(populacao):
-        st.markdown(f"## 👤 Indivíduo {idx+1}")
+    populacao_com_choque = [ { "horarios": individuo, "choques": avaliacao(individuo) } for individuo in populacao ]
+
+    for idx, individuo in enumerate(populacao_com_choque):
+        st.markdown(f"## 👤 Indivíduo {idx+1} - Choques: {individuo["choques"]}")
 
         for p in range(5):
             inicio = p * 20
             fim = inicio + 20
-            periodo_data = individuo[inicio:fim]
+            periodo_data = individuo["horarios"][inicio:fim]
             st.markdown(f"### 🗓️ {p+1}º Período")
             tabela = formatar_em_grade(periodo_data)
             st.dataframe(
