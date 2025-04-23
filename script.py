@@ -3,12 +3,17 @@ import random
 import pandas as pd
 from pprint import pprint
 
+
+def ordenar(populacao_nao_ordenada):
+    return sorted(populacao_nao_ordenada, key=lambda individuo: individuo["choques"])
+
+
 def avaliacao(individuo):
     choque = 0
-    for h in range(0, 20):
-        for i in range(0, 5):
-            for j in range(0, 4 - i):
-                if individuo[i * 20 + h]["professor"] == individuo[i * 20 + ((j + 1) * 20) + h]["professor"]:
+    for i in range(0, 20):
+        for j in range(0, 5):
+            for k in range(0, 4 - j):
+                if individuo[j * 20 + i]["professor"] == individuo[j * 20 + ((k + 1) * 20) + i]["professor"]:
                     choque += 1
 
     return choque
@@ -82,7 +87,8 @@ if st.button("Gerar população"):
 
     populacao_com_choque = [ { "horarios": individuo, "choques": avaliacao(individuo) } for individuo in populacao ]
 
-    for idx, individuo in enumerate(populacao_com_choque):
+
+    for idx, individuo in enumerate(ordenar(populacao_com_choque)):
         st.markdown(f"## 👤 Indivíduo {idx+1} - Choques: {individuo["choques"]}")
 
         for p in range(5):
