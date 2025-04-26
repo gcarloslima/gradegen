@@ -3,6 +3,9 @@ import random
 import pandas as pd
 from pprint import pprint
 
+def selecao(populacao_total):
+    escolhido1, escolhido2 = random.sample(populacao_total, 2)
+    return escolhido1, escolhido2
 
 def ordenar(populacao_nao_ordenada):
     return sorted(populacao_nao_ordenada, key=lambda individuo: individuo["choques"])
@@ -87,8 +90,55 @@ if st.button("Gerar população"):
 
     populacao_com_choque = [ { "horarios": individuo, "choques": avaliacao(individuo) } for individuo in populacao ]
 
+    populacao_ordenada = ordenar(populacao_com_choque)
 
-    for idx, individuo in enumerate(ordenar(populacao_com_choque)):
+    st.markdown(f"# 👤 Seleção de dois individuos")
+
+    escolhido1, escolhido2 = selecao(populacao_ordenada)
+
+    st.markdown(f"## 👤 Primeiro indivíduo")
+
+    for p in range(5):
+        inicio = p * 20
+        fim = inicio + 20
+        periodo_data = escolhido1["horarios"][inicio:fim]
+        st.markdown(f"### 🗓️ {p + 1}º Período")
+        tabela = formatar_em_grade(periodo_data)
+        st.dataframe(
+            tabela.style.set_properties(**{
+                'text-align': 'center',
+                'white-space': 'pre-wrap',
+                'font-size': '13px',
+                'width': '1000px'
+            }),
+            use_container_width=True
+        )
+
+    st.markdown("---")
+
+    st.markdown(f"## 👤 Segundo indivíduo")
+
+    for p in range(5):
+        inicio = p * 20
+        fim = inicio + 20
+        periodo_data = escolhido2["horarios"][inicio:fim]
+        st.markdown(f"### 🗓️ {p + 1}º Período")
+        tabela = formatar_em_grade(periodo_data)
+        st.dataframe(
+            tabela.style.set_properties(**{
+                'text-align': 'center',
+                'white-space': 'pre-wrap',
+                'font-size': '13px',
+                'width': '1000px'
+            }),
+            use_container_width=True
+        )
+
+    st.markdown("---")
+
+    st.markdown(f"# 👤 Todos os indivíduos")
+
+    for idx, individuo in enumerate(populacao_ordenada):
         st.markdown(f"## 👤 Indivíduo {idx+1} - Choques: {individuo["choques"]}")
 
         for p in range(5):
