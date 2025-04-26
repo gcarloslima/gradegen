@@ -1,43 +1,57 @@
-# Gerador de População Inicial de Horários
+# gradegen
 
-Este projeto gera uma população inicial de horários acadêmicos distribuídos em 5 períodos, onde cada disciplina é associada a um professor.
+Um gerador de horários baseado em algoritmo genético para instituições de ensino.
 
-## 🚀 Funcionalidades
+## 📂 Estrutura do Projeto
 
-- Geração de população com número configurável de indivíduos
-- Distribuição aleatória de disciplinas por indivíduo
-- Interface simples e interativa em navegador
-- Visualização tabular dos indivíduos gerados
+```
+.
+├── app/
+│   └── pages/          # Páginas da aplicação Streamlit
+│
+├── core/
+│   ├── evolutionary/   # Componentes do algoritmo genético
+│   └── evaluation/     # Funções de avaliação de fitness
+│
+└── config/             # Arquivos de configuração e dados
 
-## 🛠️ Tecnologias
+```
 
-- Python 3.8+
-- Streamlit
-- Pandas
+## ⚙️ Instalação
+
+1. Crie um ambiente virtual:
+```bash
+python -m venv .venv
+```
+
+2. Ative o ambiente virtual:
+```bash
+# No Windows
+.venv\Scripts\activate
+
+# No Unix ou MacOS
+source .venv/bin/activate
+```
+
+3. Instale as dependências:
+```bash
+pip install -r requirements.txt
+```
+
+## 🚀 Executando a Aplicação
+
+Para iniciar a aplicação Streamlit:
+
+```bash
+streamlit run app/pages/home.py
+```
+
+## ✨ Funcionalidades
+
+- Otimização de horários baseada em algoritmos genéticos
+- Detecção automática de conflitos entre professores
+- Visualização interativa dos horários gerados
+- Geração e avaliação de múltiplas populações
 
 ---
 
-## ▶️ Como executar
-
-### 1. Clone o repositório
-
-```bash
-git clone https://github.com/gcarloslima/gradegen.git
-cd gradegen
-```
-
-### 2. Crie o ambiente virtual e instale as dependências
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate  # or .venv\Scripts\activate no Windows
-pip install -r requirements.txt
-```
-Recomendado: use um ambiente virtual.
-
-### 3. Inicie a aplicação com o Streamlit
-
-```bash
-streamlit run script.py
-```
-O navegador será aberto automaticamente com a interface, geralmente em http://localhost:8501.
