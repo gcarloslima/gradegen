@@ -52,7 +52,7 @@ if gerar:
     populacao_ordenada = ordenar(populacao_com_choque)
 
     # Mostra indivíduos selecionados
-    st.markdown("## 🎯 Seleção de Dois Indivíduos")
+    st.markdown("## 🎯 Seleção de Dois Indivíduos Aleatórios")
 
     escolhido1, escolhido2 = selecao(populacao_ordenada)
 
