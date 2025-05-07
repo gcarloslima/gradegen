@@ -4,11 +4,11 @@ import os
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from core.evolutionary.selection import selecao
-from core.evolutionary.population import pop_inicial
-from core.evaluation.fitness import avaliacao, ordenar
-from core.utils import formatar_em_grade
-from config.data import get_periodos_determinados
+from app.core.evolutionary.selection import selecao
+from app.core.evolutionary.population import pop_inicial
+from app.core.evaluation.fitness import avaliacao, ordenar
+from app.core.utils import formatar_em_grade
+from app.config.data import get_periodos_determinados
 
 def display_schedule_table(horarios, title, subtitle=None):
     """Exibe uma tabela de horários com formatação adequada."""
