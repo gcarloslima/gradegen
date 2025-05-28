@@ -1,37 +1,12 @@
 import streamlit as st
-import sys
-import os
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from app.core.evolutionary.selection import selecao
 from app.core.evolutionary.population import pop_inicial
 from app.core.evaluation.fitness import avaliacao, ordenar
-from app.core.utils import formatar_em_grade
+from app.core.utils import display_schedule_table
 from app.config.data import get_periodos_determinados
 
-def display_schedule_table(horarios, title, subtitle=None):
-    """Exibe uma tabela de horários com formatação adequada."""
-    st.markdown(title)
-    if subtitle:
-        st.caption(subtitle)
 
-    for p in range(5):
-        inicio = p * 20
-        fim = inicio + 20
-        periodo_data = horarios[inicio:fim]
-        st.markdown(f"### 📚 {p + 1}º Período")
-        tabela = formatar_em_grade(periodo_data)
-        st.dataframe(
-            tabela.style.set_properties(**{
-                'text-align': 'center',
-                'white-space': 'pre-wrap',
-                'font-size': '14px',
-                'width': '1000px'
-            }),
-            use_container_width=True
-        )
-        st.markdown("---")
 
 # Configuração da página
 st.set_page_config(page_title="🧬 População Inicial", page_icon="🧬", layout="wide")

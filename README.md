@@ -43,7 +43,7 @@ pip install -r requirements.txt
 Para iniciar a aplicação Streamlit:
 
 ```bash
-streamlit run app/pages/home.py
+PYTHONPATH=. streamlit run app/Home.py
 ```
 
 ## ✨ Funcionalidades
